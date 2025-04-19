@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block Lien_he %}
+<div class="container py-5" style="background: #f0f2f5; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <h1 class="fw-bold text-primary mb-4">Liên hệ với Shop</h1>
+            <p class="text-muted">Xin vui lòng liên hệ với chúng tôi tại các cơ sở sau tại Việt Nam:</p>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <ul class="list-group shadow-sm rounded overflow-hidden">
+                <li class="list-group-item border-0 py-3 bg-white mb-3"><i class="fas fa-map-marker-alt text-danger me-2"></i> Cơ sở 1: Địa chỉ 1, Thành phố A</li>
+                <li class="list-group-item border-0 py-3 bg-white mb-3"><i class="fas fa-map-marker-alt text-danger me-2"></i> Cơ sở 2: Địa chỉ 2, Thành phố B</li>
+                <li class="list-group-item border-0 py-3 bg-white mb-3"><i class="fas fa-map-marker-alt text-danger me-2"></i> Cơ sở 10: Địa chỉ 10, Thành phố X</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 text-center">
+            <p class="fw-bold text-dark">Ngoài ra, bạn có thể liên hệ qua số điện thoại hoặc email sau:</p>
+            <p class="text-muted mb-1"><i class="fas fa-phone-alt text-success me-2"></i> Số điện thoại: <a href="tel:0123456789" class="text-decoration-none text-dark">0123456789</a></p>
+            <p class="text-muted"><i class="fas fa-envelope text-warning me-2"></i> Email: <a href="mailto:info@example.com" class="text-decoration-none text-dark">info@example.com</a></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .list-group-item {
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+    .list-group-item:hover {
+        background: #e9ecef;
+        transform: scale(1.02);
+    }
+</style>
+{% endblock Lien_he %}

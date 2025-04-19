@@ -1,0 +1,167 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block banner_slider %}
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner rounded-3 shadow-sm">
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="{% static 'app\images\banner\Banner1.png' %}" class="d-block w-100" alt="Slide 2" style="height: 280px; object-fit: cover;">
+                {% comment %} <div class="carousel-caption d-none d-md-block text-black">
+                    <h5>First slide label</h5>
+                    <p>Some text for the first slide.</p>
+                </div> {% endcomment %}
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="{% static 'app\images\banner\Banner2.jpg' %}" class="d-block w-100" alt="Slide 2" style="height: 280px; object-fit: cover;">
+                {% comment %} <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some text for the second slide.</p>
+                </div> {% endcomment %}
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="{% static 'app\images\banner\Banner3.png' %}" class="d-block w-100" alt="Slide 1" style="height: 280px; object-fit: cover;">
+                {% comment %} <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some text for the third slide.</p>
+                </div> {% endcomment %}
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <style>
+        /* Cải thiện carousel */
+        .carousel {
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .carousel-inner {
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 2px solid #007bff;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicators .active {
+            background-color: #007bff;
+            transform: scale(1.2);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+        }
+
+        .carousel-item img {
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item.active img {
+            transform: scale(1.02);
+        }
+    </style>
+{% endblock banner_slider %}
+
+
+{% block main_content %}
+<div class="container mt-5 mb-5">
+    <div class="row g-4">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card h-100 border-0 shadow-sm product-card">
+                <div class="position-relative overflow-hidden rounded-top">
+                    <img src="{{ product.ImageURL }}" class="card-img-top" alt="{{ product.name_product }}">
+                </div>
+                <div class="card-body text-center">
+                    <h6 class="fw-bold text-dark mb-2">{{ product.name_product }}</h6>
+                    <p class="text-muted small">Hà Nội | Đã bán: 100</p>
+                    <h5 class="text-danger fw-bold">{{ product.price }} <span class="fs-6">VND</span></h5>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button data-product="{{ product.id }}" data-action="add" class="btn btn-primary btn-sm update-cart">
+                            <i class="fas fa-cart-plus me-1"></i> Thêm
+                        </button>
+                        <a href="{% url 'detail' %}?id={{ product.id }}" class="btn btn-outline-success btn-sm">
+                            <i class="fas fa-eye me-1"></i> Xem
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 12px;
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    .card-img-top {
+        height: 280px;
+        object-fit: cover;
+    }
+    .btn-primary {
+        background: linear-gradient(45deg, #007bff, #00b4ff);
+        border: none;
+        transition: 0.3s;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(45deg, #0056b3, #0088cc);
+        transform: scale(1.05);
+    }
+    .btn-outline-success:hover {
+        background-color: #e9f7ef;
+        transform: scale(1.05);
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.update-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.dataset.product;
+                const isAuthenticated = "{{ user.is_authenticated }}";
+                if (isAuthenticated !== "True") {
+                    window.location.href = "{% url 'login' %}";
+                }
+            });
+        });
+    });
+</script>
+{% endblock main_content %}

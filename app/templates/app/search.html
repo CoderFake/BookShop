@@ -1,0 +1,42 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block search %}
+<div class="container py-4">
+    <h3 class="text-center text-primary mb-4">Kết quả tìm kiếm: "{{ searched }}"</h3>
+
+    <div class="row">
+        {% for product in keys %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-sm border-0">
+                <img src="{{ product.ImageURL }}" class="card-img-top" alt="{{ product.name_product }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h6 class="card-title font-weight-bold">{{ product.name_product }}</h6>
+                    <p class="text-muted small">Hà Nội | Đã bán: 100</p>
+                    <h5 class="text-danger font-weight-bold">{{ product.price }} VND</h5>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button data-product="{{ product.id }}" data-action="add" class="btn btn-outline-secondary btn-sm update-cart">Thêm vào giỏ hàng</button>
+                        <a href="#" class="btn btn-outline-success btn-sm">Xem</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p class="text-muted">Không tìm thấy sản phẩm nào phù hợp.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    .card:hover {
+        transform: scale(1.03);
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+</style>
+{% endblock search %}
